@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redwan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            background-image: url(preview.jpg); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            margin: 0; 
+            font-family: 'Poppins', sans-serif; 
+            transition: background 0.5s ease-in-out; 
+        }
+
+        h1 {
+            color: blue;
+            text-align: center; 
+            font-size: 2.5em; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); 
+        }
+
+        button {
+            display: block;
+            margin: 20px auto; 
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(45deg, skyblue, blue); 
+            border: none;
+            border-radius: 8px; 
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2); 
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s; 
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, blue, skyblue); 
+            transform: scale(1.1); 
+        }
+
+        section {
+            padding: 40px;
+            backdrop-filter: blur(8px); 
+            background: rgba(255, 255, 255, 0.2); 
+            border-radius: 15px; 
+            margin: 20px;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        div h1:hover {
+            color: blue;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        video {
+            display: block;
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            z-index: 1000;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease, width 0.5s ease, height 0.5s ease;
+            border-radius: 15px;
+        }
+
+        video.fullscreen {
+            top: 100px;
+            width: 4000px;
+            height: 700px;
+            transform: translate(-50%, -50%) scale(1);
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Redwan</h1>
+    <button id="changeBackground">Change Background</button>
+    <button id="showAlert">Click Me</button>
+
+    <section>
+        <div>
+            <button id="playVideoButton">Click Me</button>
+            <video id="videoPlayer" src="Video.mp4"></video>
+        </div>
+        <div>
+            <h1>Ayesha</h1>
+            <h1>Aswad</h1>
+            <h1>Talha</h1>
+        </div>
+    </section>
+
+    <script>
+        const body = document.body;
+
+        const backgrounds = [
+            'url(preview.jpeg)',
+            'url(background1.jpg)',
+            'url(background2.jpg)', 
+            'url(background3.jpg)'  
+        ];
+
+        let currentIndex = 0;
+
+        document.getElementById('changeBackground').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % backgrounds.length; 
+            body.style.backgroundImage = backgrounds[currentIndex]; 
+        });
+
+        document.getElementById('showAlert').addEventListener('click', () => {
+            alert('Hello, REDWAN! You clicked the button!'); 
+        });
+
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playVideoButton = document.getElementById('playVideoButton');
+
+        playVideoButton.addEventListener('click', () => {
+            videoPlayer.classList.add('fullscreen');
+            videoPlayer.play();
+
+            videoPlayer.addEventListener('ended', () => {
+                videoPlayer.classList.remove('fullscreen');
+            });
+        });
+
+        videoPlayer.addEventListener('click', () => {
+            videoPlayer.pause();
+            videoPlayer.classList.remove('fullscreen');
+        });
+    </script>
+</body>
+</html>
